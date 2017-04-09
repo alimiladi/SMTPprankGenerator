@@ -1,4 +1,4 @@
-package app;
+package app.impl;
 
 import app.impl.Group;
 import app.impl.Recipient;
@@ -21,7 +21,7 @@ public class GroupGenerator {
         victimsBufferedReader = new BufferedReader(new FileReader("victims.utf8"));
         recipients = makeRecipientList();
         potentialSenders = makeSendersList();
-}
+    }
 
     public ArrayList<Recipient> getRecipients() {
         return recipients;
@@ -41,20 +41,22 @@ public class GroupGenerator {
         return senders;
     }
 
-    private ArrayList<Recipient> makeRecipientList() throws IOException, IllegalArgumentException{
+    private ArrayList<Recipient> makeRecipientList() throws IOException, IllegalArgumentException {
         String mailAddress;
         ArrayList<Recipient> recipients = new ArrayList<Recipient>();
-        while (!(mailAddress = victimsBufferedReader.readLine()).equals("***")) {}
-        while (!(mailAddress = victimsBufferedReader.readLine()).equals(null)){
+        while (!(mailAddress = victimsBufferedReader.readLine()).equals("***")) {
+        }
+        while (!(mailAddress = victimsBufferedReader.readLine()).equals(null)) {
             recipients.add(new Recipient(mailAddress));
         }
-        if (recipients.size() < 2){
+        if (recipients.size() < 2) {
             throw new IllegalArgumentException("At least two recipients !! ");
         }
         return recipients;
     }
 
-    public app.impl.Group generateGroup(){
-        return new app.impl.Group(getSender(), getRecipients());
+    public Group generateGroup() {
+
+        return new Group(getSender(), getRecipients());
     }
 }

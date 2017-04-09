@@ -1,6 +1,5 @@
 package app.protocol;
 
-import app.GroupGenerator;
 import app.impl.Mail;
 
 import java.io.BufferedReader;

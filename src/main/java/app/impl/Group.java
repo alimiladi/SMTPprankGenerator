@@ -1,7 +1,5 @@
 package app.impl;
 
-import app.GroupGenerator;
-
 import java.util.ArrayList;
 
 /**

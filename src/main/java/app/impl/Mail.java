@@ -1,8 +1,5 @@
 package app.impl;
 
-import app.GroupGenerator;
-
-import javax.security.auth.Subject;
 import java.util.ArrayList;
 
 /**

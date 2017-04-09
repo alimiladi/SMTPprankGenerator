@@ -1,6 +1,9 @@
 package app.protocol;
 
-import app.GroupGenerator;
+import app.impl.Group;
+import app.impl.GroupGenerator;
+import app.impl.Mail;
+import com.sun.deploy.resources.Deployment_de;
 
 import java.util.ArrayList;
 
@@ -9,10 +12,11 @@ import java.util.ArrayList;
  */
 public class SMTPprankClient {
 
-    private ArrayList<GroupGenerator> groupGenerators;
+    private DefaultParametersSetter defaultParametersSetter;
+    private PrankMailReader prankMailReader;
+    private GroupGenerator groupGenerator;
+    private ArrayList<Group> groups;
+    private Mail mail;
 
-
-    public static void main(String [] args){
-        System.out.println("Hello World");
-    }
+    
 }
