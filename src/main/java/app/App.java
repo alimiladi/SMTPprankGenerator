@@ -9,18 +9,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by ALi on 09.04.2017.
+ * @author Ali Miladi
+ * @author Quentin Zeller
+ */
+
+/**
+ * This application starts an SMTP client a sends prank emails to a list iof victims from a ranadomly selected sender.
  */
 public class App {
 
-    public static void main(String [] args) throws IOException {
+
+    public static void main(String[] args) throws IOException {
         DefaultParametersSetter defaultParametersSetter = new DefaultParametersSetter();
         PrankMailReader prankMailReader = new PrankMailReader();
         SMTPprankClient client = new SMTPprankClient(defaultParametersSetter, prankMailReader);
 
         ArrayList<Group> groups = client.getGroups();
 
-        for ( Group group : groups){
+        for (Group group : groups) {
             client.connect();
             client.mailFrom(group);
             client.rcptTo(group);
@@ -28,7 +34,5 @@ public class App {
             client.endOfdata();
             client.disconnect();
         }
-
-
     }
 }
