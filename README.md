@@ -2,8 +2,10 @@
 A prank e-mail generator.
 It send forged email using a third-party web server.
 ## Requirement
-You chould have the last version of Java installed or at least the [Java runtime env. 7](https://www.java.com/fr/download/faq/release_dates.xml)
-The code is build using maven. It's not an absolute requirement but easier to build with [Apache Maven](https://maven.apache.org/)
+You chould have the last version of Java installed or at least the [Java runtime env. 7](https://www.java.com/fr/download/faq/release_dates.xml).
+
+The code is build using maven. It's not an absolute requirement but easier to build with [Apache Maven](https://maven.apache.org/).
+
 OSes such as Windows, OSx or UNIX/Linux should no cause any problem.
 ## Manual
 You need to compile the project using Maven. The recommended action is tu use `mvn clean install` to build the entire project.
