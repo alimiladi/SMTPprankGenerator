@@ -1,15 +1,12 @@
 package app.impl;
 
-import app.impl.Group;
-import app.impl.Recipient;
-import app.impl.Sender;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by ALi on 04.04.2017.
+ * This utility class is used to easily generate a group of victims out of a list of victim's e-mail addresses.
+ * The file is called
  */
 public class GroupGenerator {
     private ArrayList<Recipient> recipients;
@@ -19,45 +16,37 @@ public class GroupGenerator {
 
     public GroupGenerator() throws IOException {
         String dir = System.getProperty("user.dir");
-        victimsBufferedReader = new BufferedReader(new FileReader(dir + "src/main/resources/victims.utf8"));
-        recipients = makeRecipientList();
-        potentialSenders = makeSendersList();
+        victimsBufferedReader = new BufferedReader(new FileReader(dir + "/src/main/resources/victims.utf8"));
+        makeSendersAndRecipientsLists();
     }
 
     public ArrayList<Recipient> getRecipients() {
         return recipients;
     }
 
-    public Sender getSender() {
+    public Sender getRandomSender() {
         Random random = new Random();
-        return potentialSenders.get(random.nextInt());
+        return potentialSenders.get(Math.abs(random.nextInt() % potentialSenders.size()));
     }
 
-    private ArrayList<Sender> makeSendersList() throws IOException {
-        String mailAddress;
-        ArrayList<Sender> senders = new ArrayList<Sender>();
-        while (!(mailAddress = victimsBufferedReader.readLine()).equals("***")) {
-            senders.add(new Sender(mailAddress));
+    private void makeSendersAndRecipientsLists() throws IOException, IllegalArgumentException {
+        String mailAddress = new String();
+        String separator = new String("***");
+        potentialSenders = new ArrayList<Sender>();
+        recipients = new ArrayList<Recipient>();
+        while (!(mailAddress = victimsBufferedReader.readLine()).equals(separator)) {
+            potentialSenders.add(new Sender(mailAddress));
         }
-        return senders;
-    }
-
-    private ArrayList<Recipient> makeRecipientList() throws IOException, IllegalArgumentException {
-        String mailAddress;
-        ArrayList<Recipient> recipients = new ArrayList<Recipient>();
-        while (!(mailAddress = victimsBufferedReader.readLine()).equals("***")) {
-        }
-        while (!(mailAddress = victimsBufferedReader.readLine()).equals(null)) {
+        while (!(mailAddress = victimsBufferedReader.readLine()).equals(separator)) {
             recipients.add(new Recipient(mailAddress));
         }
         if (recipients.size() < 2) {
             throw new IllegalArgumentException("At least two recipients !! ");
         }
-        return recipients;
+        victimsBufferedReader.close();
     }
 
     public Group generateRandomGroup() {
-
-        return new Group(getSender(), getRecipients());
+        return new Group(getRandomSender(), getRecipients());
     }
 }
