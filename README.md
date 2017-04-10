@@ -9,4 +9,8 @@ They contains :
 - `config.properties` that is a key-value file that specify the server address and port of the smtp server we want to use. And how much mail we send.
 - `prankMail.utf8` that contain the subject and the body of every message we want to send. All message should be separated by \###. The subject should begin by `Subject:` and the body sseparated form the subject by one carriage return.
 - `victims.utf8` : That are the people we send the emails. Each set of victims are separated by ***.
+
 As you certainly see they are multiple mails that we send to different group. They are recognized by the separator of each property file. At each separator we know it's part of a new mail that consist of a sender, receivers and text message
+
+There is nothing more to know for a proper use of the application.
+If you want to test it without annoying everyone, you can considere to use the [SMTP server emulator called MockMock](https://github.com/tweakers-dev/MockMock) from [tweakers-dev](https://github.com/tweakers-dev) team.
