@@ -1,16 +1,22 @@
 package app.impl;
-import app.Interfaces.Victim;
+
 
 /**
- * Created by ALi on 04.04.2017.
+ * @author Ali Miladi
+ * @author Quentin Zeller
  */
-public class Sender implements Victim {
+
+/**
+ * This is a representation for a sender object by wrapping the email address.
+ */
+public class Sender{
     private String mailAddress;
-    public Sender (String mailAddress){
+
+    public Sender(String mailAddress) {
         this.mailAddress = mailAddress;
     }
 
-    public String getMailAddress(){
+    public String getMailAddress() {
         return mailAddress;
     }
 }

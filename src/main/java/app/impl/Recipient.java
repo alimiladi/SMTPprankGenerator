@@ -1,18 +1,21 @@
 package app.impl;
 
-import app.Interfaces.Victim;
+/**
+ * @author Ali Miladi
+ * @author Quentin Zeller
+ */
 
 /**
- * Created by ALi on 04.04.2017.
+ * This is a representation for a recipient object by wrapping the email address.
  */
-public class Recipient implements Victim {
+public class Recipient {
     private String mailAddress;
 
-    public Recipient(String mailAddress){
+    public Recipient(String mailAddress) {
         this.mailAddress = mailAddress;
     }
 
-    public String getMailAddress(){
+    public String getMailAddress() {
         return mailAddress;
     }
 }

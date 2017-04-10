@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * @author Ali Miladi
+ * @author Quentin Zeller
  *
  * This class is deals with a group of victims.
  */
