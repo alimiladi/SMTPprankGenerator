@@ -25,4 +25,4 @@ The `ressource` folder is where is contained the configuration file
 The app folder is where the main app is, and contains 3 packages:
 - the package `impl`, that contains itself 5 classes. `Group` a class that deal with a group of victime, `GroupGenerator` that generate a group of victim out of a list of victim email, `Mail` that construct the mail object with Subject and else, `Recipient` that consist of a recipient mail address, `Sender` that consist of a sender mail address.
 - the package `interfaces` that ocntain the interface `victim`.
-- The package `protocol` that contain the `SMTPprankClient` , the `PrankMailREader` and the `DefaultParameterSetterClass`
+- The package `protocol` that contain the `SMTPprankClient` , the `PrankMailREader` and the `DefaultParameterSetterClass` that read the properties out of the class.
