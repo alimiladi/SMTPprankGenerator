@@ -2,10 +2,9 @@ package app.protocol;
 
 import app.Interfaces.Victim;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Properties;
 
 /**
  * Created by ALi on 09.04.2017.
@@ -14,22 +13,21 @@ public class DefaultParametersSetter {
     private String smtpServerAddress;
     private String smtpServerPort;
     private int numberOfGroups;
-    private ArrayList<String> witnessesToCC;
-    private BufferedReader defaultParameterSetterBufferedReader;
+    private Properties defaultProperties;
+
 
     public DefaultParametersSetter() throws IOException {
-        defaultParameterSetterBufferedReader = new BufferedReader((new FileReader("config.properties")));
+        defaultProperties = new Properties();
+        String dir = System.getProperty("user.dir");
+        InputStream inputStream = new FileInputStream(dir + "/src/main/resources/config.properties");
+        defaultProperties.load(inputStream);
         setDefaultParameters();
     }
 
     private void setDefaultParameters() throws IOException {
-        String witnessMailAddess ;
-        smtpServerAddress = defaultParameterSetterBufferedReader.readLine();
-        smtpServerPort = defaultParameterSetterBufferedReader.readLine();
-        numberOfGroups = Integer.getInteger(defaultParameterSetterBufferedReader.readLine());
-        while(!(witnessMailAddess = defaultParameterSetterBufferedReader.readLine()).equals(null)){
-            witnessesToCC.add(witnessMailAddess);
-        }
+        smtpServerAddress = defaultProperties.getProperty("smtpServerAddress");
+        smtpServerPort = defaultProperties.getProperty("smtpServerPort");
+        numberOfGroups = Integer.parseInt(defaultProperties.getProperty("groups"));
     }
 
     public String getSmtpServerAddress(){
@@ -40,10 +38,9 @@ public class DefaultParametersSetter {
         return smtpServerPort;
     }
 
-    public ArrayList<String> getWitnessesToCC(){
-        return witnessesToCC;
-    }
-    public int getNumberOfGroups(){
+    public int getNumberOfGroups (){
         return numberOfGroups;
     }
+
+
 }

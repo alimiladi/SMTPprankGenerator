@@ -18,7 +18,8 @@ public class GroupGenerator {
     private BufferedReader victimsBufferedReader;
 
     public GroupGenerator() throws IOException {
-        victimsBufferedReader = new BufferedReader(new FileReader("victims.utf8"));
+        String dir = System.getProperty("user.dir");
+        victimsBufferedReader = new BufferedReader(new FileReader(dir + "src/main/resources/victims.utf8"));
         recipients = makeRecipientList();
         potentialSenders = makeSendersList();
     }
@@ -55,7 +56,7 @@ public class GroupGenerator {
         return recipients;
     }
 
-    public Group generateGroup() {
+    public Group generateRandomGroup() {
 
         return new Group(getSender(), getRecipients());
     }

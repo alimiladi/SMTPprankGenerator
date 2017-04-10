@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by ALi on 08.04.2017.
@@ -17,17 +18,19 @@ public class PrankMailReader {
 
 
     public PrankMailReader() throws IOException {
-        prankMailBufferedReader = new BufferedReader(new FileReader("prankMails.utf8"));
+        String dir = System.getProperty("user.dir");
+        prankMailBufferedReader = new BufferedReader(new FileReader(dir + "/src/main/resources/prankMails.utf8"));
         parseMails();
     }
 
     public void parseMails() throws IOException {
+        mails = new ArrayList<Mail>();
         String line;
         StringBuilder body = new StringBuilder();
         Mail currentMail = new Mail();
         while (!(line = prankMailBufferedReader.readLine()).equals(null)) {
             currentMail.setSubject(line);
-            while (!line.equals("###")) {
+            while (line != "###") {
                 body.append(line);
                 body.append('\n');
                 line = prankMailBufferedReader.readLine();
@@ -39,5 +42,10 @@ public class PrankMailReader {
 
     public ArrayList<Mail> getMails(){
         return mails;
+    }
+
+    public Mail getRandomMail(){
+        Random random = new Random();
+        return mails.get(random.nextInt());
     }
 }
