@@ -25,12 +25,14 @@ public class PrankMailReader {
 
     public void parseMails() throws IOException {
         mails = new ArrayList<Mail>();
-        String line;
-        StringBuilder body = new StringBuilder();
+        String line = new String();
         Mail currentMail = new Mail();
-        while (!(line = prankMailBufferedReader.readLine()).equals(null)) {
+        String separator = "###";
+        while (!(line = prankMailBufferedReader.readLine()).equals("")) {
+            StringBuilder body = new StringBuilder();
             currentMail.setSubject(line);
-            while (line != "###") {
+            line = prankMailBufferedReader.readLine();
+            while (!(line.equals(separator))) {
                 body.append(line);
                 body.append('\n');
                 line = prankMailBufferedReader.readLine();
@@ -46,6 +48,6 @@ public class PrankMailReader {
 
     public Mail getRandomMail(){
         Random random = new Random();
-        return mails.get(random.nextInt());
+        return mails.get(Math.abs(random.nextInt() % mails.size()));
     }
 }

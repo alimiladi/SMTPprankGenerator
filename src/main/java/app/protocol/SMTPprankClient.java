@@ -19,7 +19,7 @@ public class SMTPprankClient {
     private Mail mail;
 
     private String smtpServerAddress;
-    private String getSmtpServerPort;
+    private String smtpServerPort;
 
     private BufferedReader reader;
     private PrintWriter writer;
@@ -28,7 +28,7 @@ public class SMTPprankClient {
     public SMTPprankClient(DefaultParametersSetter defaultParametersSetter, PrankMailReader prankMailReader) throws IOException {
         this.defaultParametersSetter = defaultParametersSetter;
         smtpServerAddress = defaultParametersSetter.getSmtpServerAddress();
-        getSmtpServerPort = defaultParametersSetter.getSmtpServerPort();
+        smtpServerPort = defaultParametersSetter.getSmtpServerPort();
         this.prankMailReader = prankMailReader;
         groupGenerator = new GroupGenerator();
         generateRandomGroups();
@@ -44,7 +44,8 @@ public class SMTPprankClient {
     }
 
     public void connect() throws IOException {
-        socket = new Socket(smtpServerAddress, Integer.getInteger(getSmtpServerPort));
+        int port = Integer.parseInt(smtpServerPort);
+        socket = new Socket(smtpServerAddress, port);
         reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
         writer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
         writer.println(Protocol.CMD_EHLO);
