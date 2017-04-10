@@ -20,3 +20,9 @@ As you certainly see they are multiple mails that we send to different group. Th
 
 There is nothing more to know for a proper use of the application.
 If you want to test it without annoying everyone, you can considere to use the [SMTP server emulator called MockMock](https://github.com/tweakers-dev/MockMock) from [tweakers-dev](https://github.com/tweakers-dev) team.
+## The code
+The `ressource` folder is where is contained the configuration file
+The app folder is where the main app is, and contains 3 packages:
+- the package `impl`, that contains itself 5 classes. `Group`, `GroupGenerator`, `Mail`, `Recipient`, `Sender`.
+- the package `interfaces` that ocntain the interface `victim`.
+- The package `protocol` that contain the `SMTPprankClient` , the `PrankMailREader` and the `DefaultParameterSetterClass`
