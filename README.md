@@ -23,6 +23,6 @@ If you want to test it without annoying everyone, you can considere to use the [
 ## The code
 The `ressource` folder is where is contained the configuration file
 The app folder is where the main app is, and contains 3 packages:
-- the package `impl`, that contains itself 5 classes. `Group`, `GroupGenerator`, `Mail`, `Recipient`, `Sender`.
+- the package `impl`, that contains itself 5 classes. `Group` a class that deal with a group of victime, `GroupGenerator` that generate a group of victim out of a list of victim email, `Mail`, `Recipient`, `Sender`.
 - the package `interfaces` that ocntain the interface `victim`.
 - The package `protocol` that contain the `SMTPprankClient` , the `PrankMailREader` and the `DefaultParameterSetterClass`
