@@ -1,13 +1,18 @@
 package app.protocol;
 
-import app.Interfaces.Victim;
-
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Properties;
 
 /**
- * Created by ALi on 09.04.2017.
+ * @author Ali Miladi
+ * @author Quentin Zeller
+ */
+
+/**
+ * This is the parameter's setter of the application.
+ * It is in fact responsible of finding out which SMTP server address is going to be used, which port number and how many
+ * groups of victims are there.
+ * It simply reads the properties file in the resources folder and offers getters to use them as String objects.
  */
 public class DefaultParametersSetter {
     private String smtpServerAddress;
@@ -16,6 +21,11 @@ public class DefaultParametersSetter {
     private Properties defaultProperties;
 
 
+    /**
+     * Reads the properties with the help of a Properties object.
+     *
+     * @throws IOException
+     */
     public DefaultParametersSetter() throws IOException {
         defaultProperties = new Properties();
         String dir = System.getProperty("user.dir");
@@ -24,21 +34,27 @@ public class DefaultParametersSetter {
         setDefaultParameters();
     }
 
+    /**
+     * Helper method that initializes the SMTP server coordinates ( address and port number ) and the number of groups
+     * of victims to be used by the app.
+     *
+     * @throws IOException
+     */
     private void setDefaultParameters() throws IOException {
         smtpServerAddress = defaultProperties.getProperty("smtpServerAddress");
         smtpServerPort = defaultProperties.getProperty("smtpServerPort");
         numberOfGroups = Integer.parseInt(defaultProperties.getProperty("groups"));
     }
 
-    public String getSmtpServerAddress(){
+    public String getSmtpServerAddress() {
         return smtpServerAddress;
     }
 
-    public String getSmtpServerPort(){
+    public String getSmtpServerPort() {
         return smtpServerPort;
     }
 
-    public int getNumberOfGroups (){
+    public int getNumberOfGroups() {
         return numberOfGroups;
     }
 
