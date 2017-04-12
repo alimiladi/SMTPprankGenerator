@@ -119,8 +119,13 @@ public class SMTPprankClient {
         writer.println(Protocol.CMD_DATA);
         writer.flush();
         while (!(reader.readLine().startsWith("354 "))) ;
+
+        writer.println("Content-type: text/plain; charset=utf-8");
+        writer.flush();
+
         writer.println("From: " + group.getSender().getMailAddress());
         writer.flush();
+
         for (Recipient recipient : group.getRecipients()) {
             writer.println("To: " + recipient.getMailAddress());
             writer.flush();
